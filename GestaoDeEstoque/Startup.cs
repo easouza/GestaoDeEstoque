@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Microsoft.OpenApi.Models;
 
 namespace GestaoDeEstoque
 {
@@ -25,7 +26,10 @@ namespace GestaoDeEstoque
         {
             services.AddControllersWithViews();
             services.AddDatabaseModule(Configuration);
-
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+            });
             services.AddMvc().AddNewtonsoftJson(options =>
            options.SerializerSettings.ContractResolver =
               new CamelCasePropertyNamesContractResolver());
@@ -59,6 +63,13 @@ namespace GestaoDeEstoque
             }
 
             app.UseRouting();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseEndpoints(endpoints =>
             {
