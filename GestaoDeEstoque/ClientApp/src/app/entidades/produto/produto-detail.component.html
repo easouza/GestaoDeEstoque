@@ -1,0 +1,32 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="produto">
+      <h2><span>Produto</span> {{produto.id}}</h2>
+      <hr>
+      <dl class="row-md">
+        <dt><span>Nome</span></dt>
+        <dd>
+          <span>{{produto.nome}}</span>
+        </dd>
+        <dt><span>Quantidade</span></dt>
+        <dd>
+          <span>{{produto.quantidade}}</span>
+        </dd>
+        <dt><span>Valor Unitário</span></dt>
+        <dd>
+          <span>{{produto.valorUnitario}}</span>
+        </dd>
+      </dl>
+
+      <button class="btn btn-info ActionButton" type="submit"
+              (click)="previousState()">
+        <span>Voltar</span>
+      </button>
+
+      <button class="btn btn-primary ActionButton" type="button"
+              [routerLink]="['/produto', produto.id, 'edit']">
+        <span>Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

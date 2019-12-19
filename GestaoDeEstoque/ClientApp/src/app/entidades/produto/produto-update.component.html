@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2>Criar ou editar um produto</h2>
+      <div>
+        <div class="form-group" [hidden]="!editForm.get('id').value">
+          <mat-form-field>
+            <input matInput type="text" name="id" id="id" placeholder="ID:" formControlName="id" readonly />
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" name="nome" id="field_name" placeholder="Nome:" formControlName="nome" />
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" name="quantidade" id="field_quantidade" placeholder="Quantidade:"
+                   formControlName="quantidade" />
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" name="valorUnitario" id="field_valorUnitario" placeholder="Valor Unitário:"
+                   formControlName="valorUnitario"/>
+          </mat-form-field>
+        </div>
+
+      </div>
+      <div>
+        <button class="btn btn-info ActionButton" type="button" id="cancel-save" (click)="previousState()">
+          <span>Cancelar</span>
+        </button>
+        <button class="btn btn-primary ActionButton" type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" >
+          <span>Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="entities-header">
+  <h2 id="page-heading">
+    <span style=" margin-left:20px ">Produtos</span>
+    <button type="button" class="btn btn-primary CreateBtn" [routerLink]="['/produto/new']">
+      <span>
+        Criar novo produto
+      </span>
+    </button>
+  </h2>
+  <br />
+  <div class="alert alert-warning" *ngIf="produtos?.length === 0">
+    <span>Nenhuma produto cadastrado</span>
+  </div>
+  <div class="table-responsive" *ngIf="produtos?.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th><span>ID</span></th>
+          <th><span>Nome</span></th>
+          <th><span>Quantidade</span></th>
+          <th><span>Valor Unitário</span></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let produto of produtos ;trackBy: trackId">
+          <td><a [routerLink]="['/produto', produto.id, 'view' ]">{{produto.id}}</a></td>
+          <td>{{produto.nome}}</td>
+          <td>{{produto.quantidade}}</td>
+          <td>{{produto.valorUnitario}}</td>
+          <td>
+            <div>
+              <button class="btn btn-info ActionButton" type="submit"
+                      [routerLink]="['/produto', produto.id, 'view' ]">
+                <span>Ver</span>
+              </button>
+              <button class="btn btn-primary ActionButton" type="submit"
+                      [routerLink]="['/produto', produto.id, 'edit']">
+                <span>Editar</span>
+              </button>
+              <button type="submit" class="btn btn-danger ActionButton" (click)="deleteProduto(produto.id)">
+                <span>Deletar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
