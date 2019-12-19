@@ -14,8 +14,8 @@ namespace GestaoDeEstoque.Models
 
         public string Nome { get; set; }
 
-        public long Quantidade { get; set; }
+        public long? Quantidade { get; set; }
 
-        public float ValorUnitario { get; set; }
+        public float? ValorUnitario { get; set; }
     }
 }
